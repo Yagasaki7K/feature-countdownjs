@@ -1,0 +1,96 @@
+.wow {
+    visibility: hidden;
+  }
+  
+  ul {
+    list-style: none;
+  }
+  
+  #block-tempo {
+    padding: 40px 0 80px;
+    background: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+  }
+  
+  #block-tempo .titulo {
+    color: #2c2c2c;
+    font-size: 30px;
+    font-family: 'gotham-bold';
+    text-align: center;
+  }
+  
+  #block-tempo ul {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: center;
+    -moz-justify-content: center;
+    justify-content: center;
+    -ms-flex-align: center;
+    -moz-align-items: center;
+    align-items: center;
+    margin: 10px 0;
+  }
+  
+  #block-tempo ul li {
+    background-color: #e00e0e;
+    color: #fff;
+    width: 133px;
+    height: 133px;
+    border-radius: 100%;
+    margin: 0 10px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: center;
+    -moz-justify-content: center;
+    justify-content: center;
+    -ms-flex-align: center;
+    -moz-align-items: center;
+    align-items: center;
+    -moz-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+  
+  #block-tempo ul li p {
+    font-size: 60px;
+    font-family: 'gotham-bold';
+    line-height: 1;
+  }
+  
+  #block-tempo ul li span {
+    font-size: 12px;
+    font-family: 'gotham-bold';
+    text-transform: uppercase;
+  }
+  
+  #block-tempo ul .divisor {
+    width: 8px;
+  }
+  
+  #block-tempo ul .divisor .d1 {
+    background-color: #e00e0e;
+    width: 8px;
+    height: 8px;
+    margin: 2px 0;
+    display: inline-block;
+  }
+  
+  #block-tempo .descricao {
+    color: #e00e0e;
+    font-size: 20px;
+    font-family: Poppins;
+    font-weight: bold;
+    line-height: 1.4;
+    text-align: center;
+  }
+  
+  #block-tempo .descricao p {
+    color: #2c2c2c;
+    font-size: 16px;
+    font-family: 'Poppins';
+  }
+  
+  #block-tempo span {
+    margin-top: -15px;
+  }
