@@ -1,33 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cronometro em jQuery</title>
-    <link rel="stylesheet" href="src/style.css">
+<meta charset="UTF-8"/>
+<title>CRONÔMETRO</title>
+<link rel="stylesheet" type="text/css" href="src/style.css" />
+<script type="text/javascript" lang="javascript" src="src/script.js"></script>
 </head>
-<body>
-    <section id="block-tempo">
-        <div class="container">
-          <div class="titulo">Compre agora, não perca tempo!</div>
-          <ul>
-            <li>
-              <p>00</p><span>horas</span>
-            </li>
-            <div class="divisor"><span class="d1"></span><span class="d1"></span></div>
-            <li>
-              <p class="minutos"></p><span>minutos</span>
-            </li>
-            <div class="divisor"><span class="d1"></span><span class="d1"></span></div>
-            <li>
-              <p class="segundos"></p><span>segundos</span>
-            </li>
-          </ul>
-          <div class="descricao">Os preços promocionais irão se esgotar em menos de 15 minutos...
-          </div>
-        </div>
-      </section>
+
+<body onload=(IniciarCronometro('start'))>
+
+<p>
+    <input class="mostrarValor" type="text" id="mostrarValor" size="2" readonly="readonly" value="00:00"/>
+</p>
+
 </body>
-    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-    <script src="src/script.js"></script>
 </html>
