@@ -1,30 +1,115 @@
-function startCountdown(tempo) { //passar o tempo em segundos como parâmetro da função
-    if (tempo >= 0) { // Se o tempo maior ou igual a zero
-        var min = parseInt(tempo / 60); // Pega os minutos totais em relação aos segundos
-        var seg = tempo % 60; // Calcula os segundos restantes de cada minuto
-        var hora;
-        min > 15 ? hora = parseInt(min / 15) : hora = 0;
-        var dia = parseInt(hora / 24); // pega as horas divide por 24 para saber o número de dias
-        hora = hora % 24; // pega as horas restantes de cada dia
-        min = min % 60; //pega os minutos restantes de cada hora
+var configMinuto;
+var configSegundo;
+var mostrarValor;
+var evento = null;
+var contador = null;
+var minuto = 15;
+var segundo = 0;
 
-        hora = hora;
-        minutos = min;
-        segundos = seg;
+var configMinuto = minuto;
+var configSegundo = segundo;
 
-        // $(".hora").html(hora);
-        $(".minutos").html(minutos);
-        $(".segundos").html(segundos);
-        tempo--;
-        setTimeout("startCountdown(" + tempo + ")", 1000); // Define que a função será executada novamente em 1000ms = 1 segundo
-        // Quando o contador chegar a zero faz esta ação
-    }
-    // else {
-    // $("#tempo").append(" - Tempo Esgotado."); 
-    // }
+function IniciarCronometro(valor){
+	this.evento = valor;
+	this.mostrarValor = document.getElementById('mostrarValor');
+	
+	
+	if (evento=="start"){
+		if(!configMinuto){
+			if(!this.validarNumero(this.configMinuto)){
+				alert("Campo minuto não é um número!");
+				return;
+			}
+			if(!this.validarNumero(this.configSegundo) || segundo.value > 59){
+				alert("Campo segundo não é um número válido (0 a 59)!");
+				return;
+			}
+			
+			document.getElementById('min').readOnly = true;
+			segundo.readOnly = true;
+			document.getElementById('btnIniciar').disabled  = true;
+			document.getElementById('btnResetar').disabled  = false;
+			document.getElementById('btnPausar').disabled  = false;
+			this.minuto = document.getElementById('min').value;
+			this.segundo = segundo.value;
+			
+			document.getElementById('mostrarValor').classList.remove('mostrarValor');
+			document.getElementById('mostrarValor').classList.add('mostrarValor2');
+			document.getElementById('exibe').classList.remove('Classexibe');
+			document.getElementById('exibe').classList.add('Classexibe2');
+			
+		}else{
+			if(this.segundo == 0 && this.minuto != 0){
+				this.segundo = 59;
+				this.minuto--;
+			}else{
+				this.segundo--;
+			}
+			if(this.minuto == 0 && this.segundo == 0){
+				document.getElementById('min').readOnly = false;
+				segundo.readOnly = false;
+				document.getElementById('btnIniciar').disabled  = false;
+				document.getElementById('btnResetar').disabled  = true;
+				document.getElementById('btnPausar').disabled  = true;
+				this.mostrarValor.value = "00:00";
+				
+				document.getElementById('mostrarValor').classList.remove('mostrarValor2');
+				document.getElementById('mostrarValor').classList.add('mostrarValor');
+				document.getElementById('exibe').classList.remove('Classexibe2');
+				document.getElementById('exibe').classList.add('Classexibe');
+			
+				clearTimeout(this.contador);
+				return;
+			}	
+			
+			novoMinuto = null;
+			novoSegundo = null;
+			if(this.minuto <= 9){
+				novoMinuto = "0" + this.minuto;
+			}else{
+				novoMinuto = this.minuto;
+			}
+			if(this.segundo <= 9){
+				novoSegundo = "0" + this.segundo;
+			}else{
+				novoSegundo = this.segundo;
+			}
+			this.mostrarValor.value = novoMinuto + ":" + novoSegundo;
+		}
+	}
+	clearTimeout(this.contador);
+	this.contador = setTimeout('IniciarCronometro(evento)', 1000);
 }
 
-$(document).ready(function() {
-    var segundos = 899;
-    startCountdown(segundos);
-});
+function validarNumero(valor){
+	return !isNaN(parseFloat(valor)) && isFinite(valor);
+}
+
+
+
+function PausarCronometro(){
+	if(document.getElementById('btnPausar').value=="PAUSAR"){
+		document.getElementById('btnPausar').value = "VOLTAR";
+		this.evento = "pause";
+	}else{
+		document.getElementById('btnPausar').value = "PAUSAR";
+		this.evento = "start";
+	}
+}
+
+function ResetarCronometro(){
+	document.getElementById('min').readOnly = false;
+	segundo.readOnly = false;
+	document.getElementById('btnIniciar').disabled  = false;
+	document.getElementById('btnResetar').disabled  = true;
+	document.getElementById('btnPausar').disabled  = true;
+	document.getElementById('btnPausar').value = "PAUSAR";
+	this.mostrarValor.value = "00:00";
+
+document.getElementById('mostrarValor').classList.remove('mostrarValor2');
+	document.getElementById('mostrarValor').classList.add('mostrarValor');
+	document.getElementById('exibe').classList.remove('Classexibe2');
+	document.getElementById('exibe').classList.add('Classexibe');
+
+	clearTimeout(this.contador);
+}
